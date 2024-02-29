@@ -1,0 +1,32 @@
+
+ Create or ALTER   Procedure [dbo].[spUserPermissionDetail]
+ /* '===============================================================  
+ '   NAME:                 [spUserPermissionDetail]  
+ '   DATE CREATED:         27 september 2023 
+ '   CREATED BY:           Martin  
+ '   CREATED FOR:          Resettle 
+ '   FUNCTION:             Load permission details 
+ '   IN:                    
+ '   OUT:                  Nothing  
+ '   VERSION: 1             
+ '   EXAMPLE:               
+ '   COMMENTS:              
+ '   MODIFIED ON:           
+ '   MODIFIED BY:           
+ '   REASON MODIFICATION:   
+ '===============================================================*/  
+ @Groupid bigint null
+  AS  
+  
+declare @strSql varchar (1500)  
+  
+set @strsql = ' select a.id,a.name,case when c.id is null then ''0'' when c.id is not null then ''1'' end as ischecked from 
+tblPermissionDetails a left join tblPermissions c on c.id=CONVERT(varchar(50), a.id) '
+begin 
+
+if @Groupid is not null   
+ set @strSql = @strSql + 'and c.groupid= '  + convert(nvarchar,@Groupid)  
+  
+end  
+execute (@strsql ) 
+print @strSql
