@@ -1,0 +1,476 @@
+
+CREATE TABLE [dbo].[tblNationality](
+	[Country_ID] [bigint] IDENTITY(1,1) NOT NULL,
+	[CountryName] [nvarchar](255) NOT NULL,
+) ON [PRIMARY]
+GO
+--SET IDENTITY_INSERT [dbo].[tblNationality] ON 
+--GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Afghan')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Albania')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Algeria')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'America')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'American Samoa')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Andorra')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Angola')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Anguilla')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Antigua And Barbuda')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Argentina')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Armenia')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Aruba')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Ascension')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Australia')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Australian Ext. Terr.')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Austria')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Azerbaijan')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Bahamas')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Bahrain')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Bangladesh')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Barbados')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Belarus')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Belize')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Benin')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Bermuda')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Bhutan')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Bolivia')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Bosnia - Herzegovina')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Botswana')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Brazil')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Brunei Darussalam')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Bulgaria')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Burkina Faso')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Burundi')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Cambodia')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Cameroon')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'CANADA')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Cape Verde')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Central African Rep.')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Chad')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Chile')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'China')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Colombia')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Congo')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Cook Islands')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Costa Rica')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Croatia')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Cuba')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Cyprus')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Czech Republic')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Denmark')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Diego Garcia')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Djibouti')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Dominica')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Dominican Republic')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'DPR Korea (North)')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'East Timor')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Ecuador')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Egypt')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'El Salvador')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Equatorial Guinea')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Eritrea')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Estonia')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Ethiopia')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'F.S. Micronesia')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Færoe Islands')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Falkland Islands')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Fiji')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Finland')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'France')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Gabon')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Germany')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Ghana')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Gibraltar')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Greece')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Greenland')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Guadeloupe')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'GUAM')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Guatemala')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Guiana (French)')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Guinea')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Guinea-Bissau')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Guyana')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Haiti')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Honduras')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'HONG KONG')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Hungary')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Iceland')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'India')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Indonesia')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Inmarsat (Atl-East)')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Inmarsat (Atl-West)')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Inmarsat (Indian O.)')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Inmarsat (Pacific)')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Inmarsat SNAC')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Iran')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Ireland')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Israel')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Italy')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Ivory Coast')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'JAMAICA')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Japan')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Jordan')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Kazakhstan')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Kenya')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Kiribati')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Korea (South)')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Kuwait')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Kyrgyz Republic')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Laos')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Latvia')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Lebanon')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Lesotho')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Liberia')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Libya')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Liechtenstein')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Lithuania')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Luxembourg')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Macau')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Macedonia')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Macedonia, The Former Yugoslav')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Madagascar')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Malawi')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Malaysia')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Maldives')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Mali')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Malta')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Marshall Islands')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Martinique')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Mauritania')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Mauritius')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Mayotte, Comoros Is.')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Mexico')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Moldova')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Monaco')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Mongolia')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Morocco')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Mozambique')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Myanmar (Burma)')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Namibia')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Nauru')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Nepal')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Netherlands')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Netherlands Antilles')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'New Caledonia')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'New Zealand')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Nicaragua')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'New Caledonia')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'New Zealand')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Nicaragua')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Niger')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Nigeria')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Niue')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Norway')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Oman')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Pakistan')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Palau')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Palestine')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Panama')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Papua New Guinea')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Paraguay')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Peru')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Philippines')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Poland')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Portugal')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Qatar')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Rep. of Georgia')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Reunion Island')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Romania')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Russia')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Rwanda')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Saint Helena')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Saint Vincent And Grenadines')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'San Marino')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'São Tomé & Principé')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Saudi Arabia')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Seychelles')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Sierra Leone')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Singapore')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Slovenia')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Solomon Islands')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Somalia')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'South Africa')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'South Georgia And The South Sa')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Spain')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Sri Lanka')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'St Pierre & Miquélon')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Sudan')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Suriname')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Swaziland')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Sweden')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Switzerland')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Syria')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Tahiti(French Polynesia)')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Taiwan')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Tajikistan')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Tanzania')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Tanzania, United Republic Of')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Thailand')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Togo')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Tokelau')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Tonga')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Trinidad And Tobago')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'TUNISIA')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Turkey')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Turkmenistan')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Turks And Caicos Islands')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Tuvalu')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Uganda')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Ukraine')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'United Arab Emirates')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'United Kingdom')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'United States')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'United States Minor Outlying I')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'UNKNOWN')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Uruguay')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Uzbekistan')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Vanuatu')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Vatican City')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Vatican City State (holy See)')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Venezuela')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Viet Nam')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Virgin Islands (british)')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Virgin Islands (u.s.)')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Wallis and Futuna')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Wallis And Futuna Islands')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Western Sahara')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Western Samoa')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Yemen')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Yugoslavia')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Zaire')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Zambia')
+GO
+INSERT [dbo].tblNationality ([CountryName]) VALUES ( N'Zimbabwe')
+GO
+--SET IDENTITY_INSERT [dbo].[tblNationality] OFF
+--GO
