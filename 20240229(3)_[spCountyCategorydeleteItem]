@@ -1,0 +1,29 @@
+
+ Create Procedure  [dbo].[spCountyCategorydeleteItem] 
+ /* '===============================================================  
+ '   NAME:                 [spCountyCategorydeleteItem]  
+ '   DATE CREATED:         25-Sep-2023  
+ '   CREATED BY:           Martin Paul  
+ '   CREATED FOR:          Resettle Crm  
+ '   FUNCTION:             delete item in table: countrycategory  
+ '   IN:                    
+ '   OUT:                  Nothing  
+ '   VERSION: 1             
+ '   EXAMPLE:               
+ '   COMMENTS:              
+ '   MODIFIED ON:              
+ '   MODIFIED BY:              
+ '   REASON MODIFICATION:     
+ '===============================================================*/  
+ 
+ @Countryid bigint, 
+ @pcErrMsg varchar(200)= ' ' output
+ As 
+ Begin
+
+ IF ((select count(*) from tblCountryCategory where cid=@Countryid)>0)  
+ BEGIN  
+
+ delete from tblCountryCategory where cid=@Countryid
+ end
+ end
