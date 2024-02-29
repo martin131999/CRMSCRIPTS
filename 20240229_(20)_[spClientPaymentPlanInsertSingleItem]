@@ -1,0 +1,233 @@
+
+CREATE or alter PROCEDURE [dbo].[spClientPaymentPlanInsertSingleItem]  
+/* '===============================================================  
+ '   NAME:                 [spClientPaymentPlanInsertSingleItem]  
+ '   DATE CREATED:        13 March 2017  
+ '   CREATED BY:           AJIL  
+ '   CREATED FOR:          STRATIX  
+ '   FUNCTION:             Creates an item in table: Employee  
+ '   IN:                    
+ '   OUT:                  Nothing  
+ '   VERSION: 1             
+ '   EXAMPLE:               
+ '   COMMENTS:              
+ '   MODIFIED ON:          2024-02-29 
+ '   MODIFIED BY:          Martin Paul 
+ '   REASON MODIFICATION:  Added the disabled funcionality  
+ '===============================================================*/  
+  
+   
+ @id bigint=0,  
+      @fileNumber nvarchar(150)=null,  
+      @paymentPlan nvarchar(50)=null,  
+      @RetainerAmount nvarchar(150)=null,  
+      @Discount nvarchar(150)=null,  
+      @ProfesionalFeeAmt nvarchar(150)=null,  
+      @paymentMode nvarchar(50)=null,  
+       @Amount nvarchar(150)=null,  
+       @ProfDiscount nvarchar(150)=null,  
+       @ProfNetAmount nvarchar(150)=null,  
+         
+       @RetStat bit=null,  
+       @ProfStat bit=null,  
+       @Cancelreasonrct varchar(1500)=null,  
+      @Cancelreasonprof varchar(1500)=null,  
+       @partialpay bit=null,  
+       @specialdiscount bit=null,  
+         
+       @narration nvarchar(MAX)=null,  
+       @bnkdepositDate smalldatetime=null,  
+       @createdt smalldatetime=null,  
+     @createemp nvarchar(50)=null,  
+      @moddate smalldatetime=null,  
+     @modid bigint=null,  
+	 @IsDisabled bigint=null,
+ @pcErrMsg varchar(200)= ' ' output  
+   
+ AS  
+  
+ DECLARE @ReturnValue int  
+ Declare @curr as nvarchar(10)  
+select @curr=BranchCurrency  from tblBranch where branchcode =(SUBSTRING(@fileNumber,4,3))  
+declare @designation  int  
+set @designation= (select designation from tblemployee where empid=@createemp  )  
+   
+if(@designation <> 9)  
+  
+begin  
+  
+ if @paymentPlan='0'  
+begin  
+  
+  
+  
+  
+if @curr='3' or @curr ='5'  or @curr='2'  
+begin  
+  
+if CONVERT(decimal, @ProfNetAmount) <1000  
+begin  
+set @pcErrMsg = ' Amount should not be less than 1000 On Spot.'  
+ RETURN -155  
+end  
+end  
+if @curr='1'  
+begin  
+ if CONVERT(decimal, @ProfNetAmount) <420  
+ begin  
+set @pcErrMsg = ' Amount should not be less than 420 On Spot.'  
+ RETURN -154  
+end  
+end  
+ if @curr='6'  
+begin  
+ if CONVERT(decimal, @ProfNetAmount) <100  
+ begin  
+set @pcErrMsg = ' Amount should not be less than 100 On Spot.'  
+ RETURN -153  
+end  
+end  
+end   
+if @paymentPlan='2'   
+ begin  
+   
+if @curr='3' or @curr ='5'  or @curr='2'  
+  
+begin  
+  
+if (CONVERT(decimal(18,2), @ProfNetAmount) < CONVERT(decimal(18,2), 1000))  
+begin  
+set @pcErrMsg = ' Amount should not be less than 1000 On Installment.'  
+  
+ RETURN -150  
+ end  
+end  
+  
+if @curr='1'  
+begin  
+ if CONVERT(decimal, @ProfNetAmount) <450  
+ begin  
+set @pcErrMsg = ' Amount should not be less than 450 On Installment.'  
+ RETURN -151  
+end  
+end  
+ if @curr='6'  
+begin  
+ if CONVERT(decimal, @ProfNetAmount) <100  
+ begin  
+set @pcErrMsg = ' Amount should not be less than 100 On Installment.'  
+ RETURN -152  
+end  
+end  
+  
+  
+end   
+  
+end  
+--Disabled functionality
+if @IsDisabled='1'
+begin
+set @ProfesionalFeeAmt=0
+set @ProfNetAmount=0
+set @ProfDiscount=0
+end  
+--End of Disabled functionality
+ IF (@id =0)  
+   
+ BEGIN  
+   
+  INSERT INTO tblClientpaymentplan  
+  (  
+   
+  fileNumber,  
+  paymentPlan,  
+  RetainerAmount,  
+  Discount,  
+  ProfesionalFeeAmt,  
+  paymentMode,  
+  Amount,  
+  ProfDiscount,  
+  ProfNetAmount,  
+  RetStat,  
+  ProfStat,  
+  Cancelreasonrct,  
+  Cancelreasonprof,  
+  partialpay,  
+  narration,  
+  bnkdepositDate,  
+  createdt,  
+  createemp,  
+  moddate,  
+  modid,  
+  specialdiscount  
+  )  
+  VALUES  
+  (  
+    
+   
+  @fileNumber,  
+  @paymentPlan,  
+  @RetainerAmount,  
+  @Discount,  
+  @ProfesionalFeeAmt,  
+  @paymentMode,  
+  @Amount,  
+  @ProfDiscount,  
+  @ProfNetAmount,  
+  @RetStat,  
+  @ProfStat,  
+  @Cancelreasonrct,  
+  @Cancelreasonprof,  
+  @partialpay,  
+  @narration,  
+  @bnkdepositDate,  
+  getdate(),  
+  @createemp,  
+  getdate(),  
+  @createemp,  
+  @specialdiscount  
+    
+  )  
+   
+ IF @@ERROR <> 0  
+  BEGIN  
+   set @pcErrMsg = 'Error inserting into tblClientpaymentplan.'  
+   RETURN -103  
+  END  
+  SELECT @ReturnValue = SCOPE_IDENTITY()  
+  RETURN @ReturnValue  
+ END  
+ else  
+   
+ BEGIN  
+  UPDATE tblClientpaymentplan  SET   
+    
+  fileNumber=@fileNumber,  
+  paymentPlan=@paymentPlan,  
+  RetainerAmount=@RetainerAmount,  
+  Discount=@Discount,  
+  ProfesionalFeeAmt=@ProfesionalFeeAmt,  
+  paymentMode=@paymentMode,  
+  Amount=@Amount,  
+  ProfDiscount=@ProfDiscount,  
+  ProfNetAmount=@ProfNetAmount,  
+  RetStat=@RetStat,  
+  ProfStat=@ProfStat,  
+  Cancelreasonrct=@Cancelreasonrct,  
+  Cancelreasonprof=@Cancelreasonprof,  
+  partialpay=@partialpay,  
+  narration=@narration,  
+  bnkdepositDate=@bnkdepositDate,  
+  moddate=getdate(),  
+  modid=@createemp,  
+  specialdiscount=@specialdiscount  
+  WHERE   
+   id = @id   
+  IF @@ERROR <> 0  
+  BEGIN  
+   set @pcErrMsg = 'Error Updating tblClientpaymentplan.'  
+   RETURN -104  
+  END  
+  SELECT @ReturnValue = @id  
+  RETURN @ReturnValue  
+ END
