@@ -1,0 +1,58 @@
+create or alter PROCEDURE [dbo].[spCountyInsertSingleItem]
+/*	'===============================================================
+	'   NAME:                	[spCountyInsertSingleItem]
+	'   DATE CREATED:       	27 Aug 2018
+	'   CREATED BY:          	AJIL
+	'   CREATED FOR:         	STRATIX
+	'   FUNCTION:            	Creates an item in table: Designation
+	'   IN:                  
+	'   OUT:                 	Nothing
+	'   VERSION: 1           
+	'   EXAMPLE:             
+	'   COMMENTS:            
+	'   MODIFIED ON:         2023-09-26
+	'   MODIFIED BY:         Martin 
+	'   REASON MODIFICATION: Created for the id geting 
+	'===============================================================*/
+
+	@cid bigint,
+	@cName nvarchar (500)=null,
+	@pcErrMsg varchar(200)= ' ' output
+	AS
+	DECLARE @ReturnValue int
+
+	IF (@cid IS NULL)
+	BEGIN
+		INSERT INTO tblCountry
+		(
+			cName
+		)
+		VALUES
+		(
+		@cName
+		)
+	
+	IF @@ERROR <> 0
+		BEGIN
+			set @pcErrMsg = 'Error inserting into tblCountry.'
+			RETURN -103
+		END
+		select @ReturnValue = SCOPE_IDENTITY()
+		return @ReturnValue
+	END
+	else
+	BEGIN
+		UPDATE tblCountry  SET	
+		cName=@cName
+		
+		WHERE 
+			cid = @cid 
+		IF @@ERROR <> 0
+		BEGIN
+			set @pcErrMsg = 'Error Updating tblCountry.'
+			RETURN -104
+		END
+		--select @ReturnValue = SCOPE_IDENTITY()
+		return @cid
+	END
+	
