@@ -1,0 +1,39 @@
+
+CREATE or alter  Procedure [dbo].[GenerateFileNumber]   
+(  
+/*'===============================================================  
+ '   Modified ON     : 2024-02-26   
+ '   Modified BY     : Martin Paul
+ '   Modified Reason : added the branchid to the sp
+==================================================================*/
+@AssignedEmp int ,@trackid varchar(100) output, 
+@branchid bigint
+)  
+as   
+declare @sino varchar(10)  
+set @sino ='1000'  
+declare @FileNumber varchar(100)  
+declare @branchcode varchar(3)  
+declare @year varchar(2)  
+declare @SiCode varchar(100)  
+--select @branchcode =branchcode from vw_EmployeeDetails where EmpID=@AssignedEmp  
+select @branchcode =branchcode from tblBranch  where id=@branchid  
+create table #tmp   
+(  
+trackid nvarchar(100)  
+)  
+Declare @strsql varchar(2000)   
+set @year=right ( cast ( datepart(year,GETDATE()) as varchar ) , 2 )   
+set @SiCode='RSW'+@branchcode+@year   
+--print @SiCode  
+  
+  
+set @strsql='insert into #tmp select case when ISNULL(max(filenumber),'''')='''' then '''+@SiCode+'00001''  
+else ''' + @SiCode+'''+ RIGHT(''00000''+cast(cast(max(cast( case when len(filenumber) =12 then substring(filenumber,9,4) else substring(filenumber,9,5)  end as bigint))  as int)+1 as nvarchar(10)),5)end   
+from tblApplicant where filenumber  like '''+@SiCode+'%'''   
+print (@strsql)  
+exec (@strsql)  
+select @trackid=trackid from #tmp   
+drop table #tmp  
+  
+  
