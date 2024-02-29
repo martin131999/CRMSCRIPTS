@@ -1,0 +1,7 @@
+  select * from tblApplicant
+  ALTER TABLE tblapplicant
+ADD Branch_ID bigint;
+
+  select * from [tblApplicantLog]
+    ALTER TABLE tblApplicantLog
+ADD Branch_ID bigint;
