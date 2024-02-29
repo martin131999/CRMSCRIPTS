@@ -1,0 +1,32 @@
+
+CREATE or alter Procedure [dbo].[SpClientDetailsRetainedInstallment]  
+(  
+@fromdt nvarchar(50)='',  
+@todt nvarchar(50)='',  
+@country int=0,  
+@staff nvarchar(50)='0',  
+@branchname nvarchar(100)='0'  
+)  
+as  
+declare @StrSql varchar(3000)  
+set @strsql = ' select a.id  
+      ,a.fileNumber,a.RetainerAmount,a.ProfessionalAmount,a.PaymentMode,a.Amount,a.Narration,a.Date,a.NextDate,a.createdid,a.createddt,a.Approval,a.paymentApprovedBy,a.paymentApprovalDate,a.paymentApprovalNarration, b.CountryInterested,b.branchname,CONCAT
+(b.Fname,'' '',b.Sname,'' '' ,b.Lname) AS EmpName,g.pmode from tblclientInstallment a left join vw_ClientDetails b on a.filenumber = b.filenumber left join tblPaymentMode g on a.PaymentMode=g.pid where 1=1 and isnull(b.IsDisable,0)<>1 '  
+    if @fromDt <>'' and @todt <>''  
+ set @StrSql=@StrSql+' and cast (datediff (day, 0, a.Date) as datetime)  between ''' +  Convert(Varchar,@fromDt)  + ''' and ''' + Convert(varchar,@todt)  + ''''  
+   
+ if @country<>0  
+ set @StrSql=@StrSql+' and CountryInterested='+convert(varchar,@country )  
+  
+   
+ if @staff <>'0'   
+ set @StrSql=@StrSql+' and  b.assignedemp='''+convert(varchar(1000),@staff)+''''  
+  
+   
+ if @branchname <>'0'   
+ set @StrSql=@StrSql+' and branchname in ('''+replace( convert(varchar(500),@branchname),',',''',''')+''')'  
+   
+   
+ set @StrSql=@StrSql+' order by a.Date desc'  
+ print @StrSql  
+ exec (@StrSql)
