@@ -1,0 +1,54 @@
+
+CREATE or alter Procedure [dbo].[SpClientDetailsRetained]  
+(  
+/*'===============================================================    
+ '   Modified ON     : 2024-02-28     
+ '   Modified BY     : Martin Paul  
+ '   Modified Reason : added the isdisabled<>1 load  
+==================================================================*/  
+@fromdt smalldatetime='',  
+@todt smalldatetime='',  
+@country int=0,  
+@staff nvarchar(50)='0',  
+@branchname nvarchar(100)='0'  
+)  
+as  
+declare @StrSql varchar(3000)  
+Create table #temp (Filenumber varchar(20),payNarration varchar(500))  
+  
+insert into #temp select distinct filenumber,narration  from tblClientpaymentplanlog  
+ where createdt between @fromdt and @todt  
+   
+set @StrSql='  
+select d.id, d.FileNumber ,Fname+'' ''+Sname+'' ''+Lname as Name ,isnull(Remarks,'''') as Narration,1 Category,pmode paymentMode ,isnull(RetainerAmount,0) as RetainerAmount,  
+isnull(ProfesionalFeeAmt,0) as ProfesionalFeeAmt, isnull(Amount,0) as Amount,isnull(Discount,0) as Discount,isnull(ProfDiscount,0) as ProfDiscount,isnull(ProfNetAmount,0) as ProfNetAmount,createdt ,  
+CountryInterested ,cName,Retained ,paymentPlan,branch,EmpName,branchname,Narration as paymentnarration,RetStat,ProfStat,Cancelreasonrct,Cancelreasonprof,paymentApproval   
+ ,(select isnull(max(isnull(a.IDApproval,''0'')),''0'')  from tblDOCAttachments a where a.DocNo=d.id group by a.docno) attchApproval,d.RetStat,d.ProfStat,d.Cancelreasonrct,d.Cancelreasonprof,d.ContactName,d.EmailID,d.AssignedEmp,d.createid,d.createdname,d
+.moddate,d.RetainedDate  
+ from vw_ClientDetails D   
+ --left outer join #temp T on D.filenumber = t.filenumber  
+  where  
+-- RetainerAmount is not null and RetainerAmount<>''''  and   
+createid<>''999'' and assignedemp<>''999'' and isnull(d.IsDisable,0)<>1 '  
+  
+  if @fromDt <>'' and @todt <>''  
+ set @StrSql=@StrSql+' and RetainedDate between ''' +  Convert(Varchar,@fromDt)  + ''' and ''' + Convert(varchar,@todt)  + ''''  
+   
+ if @country<>0  
+ set @StrSql=@StrSql+' and CountryInterested='+convert(varchar,@country )  
+  
+   
+ if @staff <>'0'   
+ set @StrSql=@StrSql+' and (createid='''+convert(varchar(1000),@staff)+'''or assignedemp='''+convert(varchar(1000),@staff)+''')'  
+  
+   
+ if @branchname <>'0'   
+ set @StrSql=@StrSql+' and branchname in ('''+replace( convert(varchar(500),@branchname),',',''',''')+''')'  
+   
+   
+ set @StrSql=@StrSql+' order by d.RetainedDate desc'  
+ print @StrSql  
+ exec (@StrSql)  
+    
+    
+ drop table #temp 
