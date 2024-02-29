@@ -1,0 +1,68 @@
+  
+ Create or alter  PROCEDURE [dbo].[spCountyCategoryInsertupdateItem]  
+/* '===============================================================  
+ '   NAME:                 [spCountyCategoryInsertupdateItem]  
+ '   DATE CREATED:         25-Sep-2023  
+ '   CREATED BY:           Martin Paul  
+ '   CREATED FOR:          Resettle Crm  
+ '   FUNCTION:             Creates an item in table: Designation  
+ '   IN:                    
+ '   OUT:                  Nothing  
+ '   VERSION: 1             
+ '   EXAMPLE:               
+ '   COMMENTS:              
+ '   MODIFIED ON:              
+ '   MODIFIED BY:              
+ '   REASON MODIFICATION:    To insert the category  
+ '===============================================================*/  
+  
+ @id bigint,  
+ @categoryid bigint,  
+ @Countryid bigint,  
+ @pcErrMsg varchar(200)= ' ' output  
+ AS  
+ DECLARE @ReturnValue int  
+  
+ IF (@id is null)  
+ BEGIN  
+
+  INSERT INTO tblCountryCategory  
+  (  
+   catid,  
+   cid  
+  )  
+  VALUES  
+  (  
+  @categoryid,  
+  @Countryid  
+  )  
+   
+ IF @@ERROR <> 0  
+  BEGIN  
+   set @pcErrMsg = 'Error inserting into tblCountryCategory.'  
+   RETURN -103  
+  END  
+  SELECT @ReturnValue = SCOPE_IDENTITY() 
+  return @ReturnValue
+ END  
+ --else  
+ --BEGIN  
+ -- INSERT INTO tblCountryCategory  
+ -- (  
+ --  catid,  
+ --  cid  
+ -- )  
+ -- VALUES  
+ -- (  
+ -- @categoryid,  
+ -- @Countryid  
+ -- )  
+  
+ -- IF @@ERROR <> 0  
+ -- BEGIN  
+ --  set @pcErrMsg = 'Error Updating tblCountryCategory.'  
+ --  RETURN -103  
+ -- END  
+ -- SELECT @ReturnValue = SCOPE_IDENTITY()  
+ --   return @ReturnValue
+ --END  
