@@ -1,0 +1,109 @@
+
+CREATE or alter PROCEDURE [dbo].[spClientInstalmentPaymentPlanInsertSingleItem]  
+/* '===============================================================  
+ '   NAME:                 [spClientInstalmentPaymentPlanInsertSingleItem]  
+ '   DATE CREATED:        13 March 2017  
+ '   CREATED BY:           AJIL  
+ '   CREATED FOR:          STRATIX  
+ '   FUNCTION:             Creates an item in table: Employee  
+ '   IN:                    
+ '   OUT:                  Nothing  
+ '   VERSION: 1             
+ '   EXAMPLE:               
+ '   COMMENTS:              
+ '   MODIFIED ON:          2024-02-29 
+ '   MODIFIED BY:          Martin Paul 
+ '   REASON MODIFICATION:  Added the isdisable functionality  
+ '===============================================================*/  
+  
+   
+ @id bigint=0,  
+      @fileNumber nvarchar(150)=null,  
+      @RetainerAmount nvarchar(150)=null,  
+      @ProfessionalAmount nvarchar(150)=null,  
+      @PaymentMode bigint=null,  
+       @Amount nvarchar(150)=null,  
+       @Narration nvarchar(3050)=null,  
+       @Date smalldatetime=null,  
+       @NextDate smalldatetime=null,  
+     @createdid nvarchar(50)=null,  
+     @createddt smalldatetime=null,  
+     @Approval bit='0',  
+	 @IsDisabled bigint=null,
+ @pcErrMsg varchar(200)= ' ' output  
+   
+ AS  
+ DECLARE @ReturnValue int  
+  
+  --Disabled functionality
+if @IsDisabled='1'
+begin
+set @ProfessionalAmount=0
+set @RetainerAmount=0
+end  
+--End of Disabled functionality
+
+ IF (@id =0)  
+ BEGIN  
+  INSERT INTO tblclientInstallment  
+  (  
+   
+  fileNumber,  
+  RetainerAmount,  
+  ProfessionalAmount,  
+  paymentMode,  
+  Amount,  
+  Narration,  
+  Date,  
+  NextDate,  
+  createdid,  
+  createddt,  
+  Approval  
+    
+  )  
+  VALUES  
+  (  
+  @fileNumber,  
+  @RetainerAmount,  
+  @ProfessionalAmount,  
+  @paymentMode,  
+  @Amount,  
+  @Narration,  
+  @Date,  
+  @NextDate,  
+  @createdid,  
+  getdate(),  
+  @Approval  
+  )  
+   
+ IF @@ERROR <> 0  
+  BEGIN  
+   set @pcErrMsg = 'Error inserting into tblclientInstallment.'  
+   RETURN -103  
+  END  
+  SELECT @ReturnValue = SCOPE_IDENTITY()  
+ END  
+ else  
+ BEGIN  
+  UPDATE tblclientInstallment  SET   
+    
+  fileNumber=@fileNumber,  
+  RetainerAmount=@RetainerAmount,  
+  ProfessionalAmount=@ProfessionalAmount,  
+  paymentMode=@paymentMode,  
+  Amount=@Amount,  
+  Narration=@Narration,  
+  Date=@Date,  
+  NextDate=@NextDate,  
+  createddt=getdate(),  
+  createdid=@createdid,  
+  Approval=@Approval  
+  WHERE   
+   id = @id   
+  IF @@ERROR <> 0  
+  BEGIN  
+   set @pcErrMsg = 'Error Updating tblclientInstallment.'  
+   RETURN -104  
+  END  
+  SELECT @ReturnValue = SCOPE_IDENTITY()  
+ END  
