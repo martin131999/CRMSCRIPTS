@@ -1,0 +1,292 @@
+
+ CREATE or alter   PROCEDURE [dbo].[spAplicantInsertSingleItem]    
+/* '===============================================================    
+ '   NAME:                 [spAplicantInsertSingleItem]    
+ '   DATE CREATED:         28 Febraury 2017    
+ '   CREATED BY:           AJIL    
+ '   CREATED FOR:          STRATIX    
+ '   FUNCTION:             Creates an item in table: Employee    
+ '   IN:                      
+ '   OUT:                  Nothing    
+ '   VERSION: 1               
+ '   EXAMPLE:                 
+ '   COMMENTS:                
+ '   MODIFIED ON:          2024-02-26  
+ '   MODIFIED BY:          Martin Paul  
+ '   REASON MODIFICATION:  added the branchid  and isdisable
+ '===============================================================*/    
+    
+     
+ @id bigint=0,    
+@FileNumber nvarchar(500),    
+@Category nvarchar(500)=null,    
+@Fname nvarchar(500)=null,    
+@Sname nvarchar(500)=null,    
+@Lname nvarchar(500)=null,    
+@DOB smalldatetime=null,    
+@ContactName nvarchar(500)=null,    
+@EmailID nvarchar(500)=null,    
+@Source nvarchar(500)=null,    
+@Profession nvarchar(500)=null,    
+@TotExperience nvarchar(500)=null,    
+@CountryInterested nvarchar(500)=null,    
+@OtherCountryIntersted nvarchar(500)=null,    
+@processaus nvarchar(500)=null,    
+@processcanada nvarchar(500)=null,    
+@NocCode nvarchar(500)=null,    
+@ANZCO nvarchar(500)=null,    
+@Retained bit=null,    
+ @remarkscan  nvarchar(1500)=null,    
+ @remarksaus  nvarchar(1500)=null,    
+ @cutoffcan  nvarchar(150)=null,    
+ @cutoffaus  nvarchar(150)=null,    
+    
+@AssignedEmp nvarchar(500)=null,    
+@AssesmentResultCAN nvarchar(500)=null,    
+@AssesmentResultAUS nvarchar(500)=null,    
+@FollowupStatus nvarchar(500)=null,    
+@RetainedDate nvarchar(500)=null,    
+@Lead nvarchar(500)=null,    
+@Applicant nvarchar(500)=null,    
+@Client nvarchar(500)=null,    
+@prospect nvarchar(500)=null,    
+@Education nvarchar(500)=null,    
+@appointmentDate smalldatetime=null,    
+@Remarks nvarchar(MAX)=null,    
+@RemarksClients nvarchar(3000)=null,    
+    
+@mailSend nvarchar(50)=null,    
+@appointmenttime nvarchar(500)=null,    
+@createdate smalldatetime=null,    
+@createid nvarchar(50)=null,    
+@modid nvarchar(50)=null,    
+@moddate smalldatetime=null,    
+@IDApproval nvarchar(50)=null,    
+@paymentApproval nvarchar(50)=null,    
+@Address nvarchar(1000)=null,    
+ @pcErrMsg varchar(200)= ' ' output,    
+ @FileNumberout nvarchar(500)='' output,    
+ @PNP_OIDApproval bit=1 ,---Approved   
+ @Branch_ID nvarchar(500)=null,  
+ @IsDisabled bigint=null   
+ AS    
+ DECLARE @ReturnValue int    
+--if @FileNumber is null  or @FileNumber=''    
+--begin    
+----declare @year varchar(10)    
+    
+--end    
+    
+print 'A'    
+ IF (@id =0)    
+ BEGIN    
+ declare @sino varchar(10)    
+set @sino ='1000'    
+if (select COUNT(*) from tblApplicant where LTRIM(rtrim(ContactName))=LTRIM(rtrim(@ContactName))    
+or LTRIM(rtrim(EmailID))=LTRIM(rtrim(@EmailID))and IsDisable=1)>0    
+begin    
+ set @pcErrMsg = 'Error inserting into tblApplicant.'    
+ RETURN -103    
+end    
+exec GenerateFileNumber @AssignedEmp=@AssignedEmp,@branchid= @Branch_ID ,@trackid=@filenumber  output    
+    
+    
+    
+--print @filenumber    
+if (select COUNT(*) from tblApplicant where FileNumber=@filenumber)>0    
+begin    
+ set @pcErrMsg = 'Error inserting into tblApplicant.'    
+ RETURN -103    
+end    
+    
+set @FileNumberout=@FileNumber     
+    
+    
+    
+  INSERT INTO tblApplicant    
+  (    
+      
+FileNumber,    
+Category,    
+Fname,    
+Sname,    
+Lname,    
+DOB,    
+ContactName,    
+EmailID,    
+Source,    
+Profession,    
+TotExperience,    
+CountryInterested,    
+OtherCountryIntersted,    
+processaus,    
+processcanada,    
+NocCode,    
+ANZCO,    
+remarkscan,    
+remarksaus,    
+cutoffcan,    
+cutoffaus,    
+AssignedEmp,    
+AssesmentResultCAN,    
+AssesmentResultAUS,    
+FollowupStatus,    
+RetainedDate,    
+Lead,    
+Applicant,    
+Client,    
+prospect,    
+Education,    
+appointmentDate,    
+appointmenttime,    
+Remarks,    
+RemarksClients,    
+mailSend,    
+createdt,    
+createid,    
+IDApproval,    
+paymentApproval,    
+Retained,    
+modid,    
+moddate,    
+Address,    
+PNP_OIDApproval,   
+Branch_ID,
+IsDisable 
+  )    
+  VALUES    
+  (    
+  @FileNumber,    
+@Category,    
+@Fname,    
+@Sname,    
+@Lname,    
+@DOB,    
+@ContactName,    
+@EmailID,    
+@Source,    
+@Profession,    
+@TotExperience,    
+@CountryInterested,    
+@OtherCountryIntersted,    
+@processaus,    
+@processcanada,    
+@NocCode,    
+@ANZCO,    
+@remarkscan,    
+@remarksaus,    
+@cutoffcan,    
+@cutoffaus,    
+@AssignedEmp,    
+@AssesmentResultCAN,    
+@AssesmentResultAUS,    
+@FollowupStatus,    
+@RetainedDate,    
+@Lead,    
+@Applicant,    
+@Client,    
+@prospect,    
+@Education,    
+@appointmentDate,    
+@appointmenttime,    
+@Remarks,    
+@RemarksClients,    
+@mailSend,    
+getdate(),    
+@createid,    
+@IDApproval,    
+@paymentApproval,    
+@Retained,    
+@createid,    
+getdate(),    
+@Address,    
+@PNP_OIDApproval,    
+ @Branch_ID,
+@IsDisabled
+    
+  )    
+     
+ IF @@ERROR <> 0    
+  BEGIN    
+   set @pcErrMsg = 'Error inserting into tblApplicant.'    
+   RETURN -103    
+  END    
+  SELECT @ReturnValue = 1    
+ END    
+ else    
+ BEGIN    
+ print 'B'    
+ if (select COUNT(*) from tblApplicant where id <>@id  and(LTRIM(rtrim(ContactName))=LTRIM(rtrim(@ContactName))    
+or LTRIM(rtrim(EmailID))=LTRIM(rtrim(@EmailID))))>0    
+begin   
+print 'c'    
+ set @pcErrMsg = 'Error inserting into tblApplicant.'    
+ RETURN -103    
+end    
+ set @FileNumberout=@FileNumber 
+ --disabling 
+ if @IsDisabled=1
+begin
+ set @EmailID=null
+ set @ContactName=null
+ end
+ ---end disabling 
+UPDATE tblApplicant  SET     
+FileNumber=@FileNumber,    
+Category=@Category,    
+Fname=@Fname,    
+Sname=@Sname,    
+Lname=@Lname,    
+DOB=@DOB,    
+ContactName=@ContactName,    
+EmailID=@EmailID,    
+Source=@Source,    
+Profession=@Profession,    
+TotExperience=@TotExperience,    
+CountryInterested=@CountryInterested,    
+OtherCountryIntersted=@OtherCountryIntersted,    
+processaus=@processaus,    
+processcanada=@processcanada,    
+NocCode=@NocCode,    
+ANZCO=@ANZCO,    
+remarkscan=@remarkscan,    
+remarksaus=@remarksaus,    
+cutoffcan=@cutoffcan,    
+cutoffaus=@cutoffaus,    
+AssignedEmp=@AssignedEmp,    
+AssesmentResultCAN=@AssesmentResultCAN,    
+AssesmentResultAUS=@AssesmentResultAUS,    
+FollowupStatus=@FollowupStatus,    
+RetainedDate=@RetainedDate,    
+Lead=@Lead,    
+Applicant=@Applicant,    
+Client=@Client,    
+prospect=@prospect,    
+Education=@Education,    
+appointmentDate=@appointmentDate,    
+appointmenttime=@appointmenttime,    
+Remarks=@Remarks,    
+RemarksClients=@RemarksClients,    
+mailSend=@mailSend,    
+IDApproval=@IDApproval,    
+paymentApproval=@paymentApproval,    
+Retained=@Retained,    
+modid=@createid,    
+moddate=getdate(),    
+Address=@Address,    
+PNP_OIDApproval=@PNP_OIDApproval,    
+ Branch_ID=@Branch_ID,    
+IsDisable=@IsDisabled      
+  WHERE     
+   id = @id     
+  IF @@ERROR <> 0    
+  BEGIN    
+   set @pcErrMsg = 'Error Updating tblApplicant.'    
+   RETURN -104    
+  END    
+  SELECT @ReturnValue = 1    
+      
+ END    
+     
+ return @returnvalue    
+    
