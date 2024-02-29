@@ -1,0 +1,57 @@
+
+
+CREATE or Alter VIEW [dbo].[vw_LeadDetails] AS   
+select a.id,  
+      a.FileNumber,  
+     a.Category,  
+     a.Fname,  
+      a.Sname,  
+      a.Lname,  
+      a.DOB,  
+      a.ContactName,  
+      a.EmailID,  
+      a.Source,  
+      a.Profession,  
+      a.TotExperience,  
+      a.appointmentDate,  
+     a.appointmenttime,  
+     a.CountryInterested,  
+     a.OtherCountryIntersted,  
+      a.AssignedEmp,  
+       a.Education,  
+      a.AssesmentResultCAN,  
+      a.AssesmentResultAUS,  
+      a.FollowupStatus,  
+      a.RetainedDate,  
+      a.Remarks,  
+      a.Lead,  
+      a.Applicant,  
+     a.createdt,  
+      a.Client,  
+      a.prospect,  
+       b.srcname,  
+       c.prname,  
+       d.CategoryName,  
+       e.edName,  
+       f.Branch,  
+       f.EmpName,  
+         a.createid,  
+         g.EmpName createdname,  
+a.modid,  
+a.moddate,a.Address,
+a.ANZCO,
+a.Branch_ID
+      from tblApplicant a left join tblSource b on a.source=b.srcid  
+       left join tblProfession c on a.Profession=c.prid   
+       left join tblCategory d on d.catid=a.Category   
+       left join tblEducation1 e on a.Education=e.edid  
+       left join tblEmployee g on a.createid=g.EmpID  
+       left join tblEmployee f on a.AssignedEmp=f.EmpID where a.Lead='1'  
+  
+  
+  
+  
+  
+  
+  
+  
