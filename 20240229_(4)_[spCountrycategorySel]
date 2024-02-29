@@ -1,0 +1,26 @@
+
+  CREATE or alter PROCEDURE [dbo].[spCountrycategorySel] 
+(
+	@id bigint = null ,
+	@catid bigint = null ,
+	@cid bigint = null ,
+	@CategoryName nvarchar (500)=null,
+	@cName nvarchar (500)=null
+)
+ AS
+
+declare @strSql varchar (1500)
+
+set @strsql = ' select a.id,a.Catid,b.CategoryName,c.cid,c.cName  from tblCountryCategory a 
+right join tblCategory b on a.catid=b.Catid 
+right join tblCountry c on a.cid=c.cid where 1=1 '
+
+if @id is not null 
+	set @strSql = @strSql + ' and a.id =  '  + convert(nvarchar,@id)
+if @catid is not null 
+	set @strSql = @strSql + ' and a.catid =  '  + convert(nvarchar,@catid)
+	if @cid is not null 
+	set @strSql = @strSql + ' and c.cid=  '  + convert(nvarchar,@cid)
+
+execute (@strsql )
+print @strsql
