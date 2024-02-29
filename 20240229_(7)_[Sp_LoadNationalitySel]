@@ -1,0 +1,29 @@
+Create or alter Procedure [Sp_LoadNationalitySel]
+/* '===============================================================  
+ '   NAME:                 [Sp_LoadNationalitySel]  
+ '   DATE CREATED:         23 Febuvary 2024 
+ '   CREATED BY:           Martin  
+ '   CREATED FOR:          Resettle 
+ '   FUNCTION:             Load Nationality details 
+ '   IN:                    
+ '   OUT:                  Nothing  
+ '   VERSION: 1             
+ '   EXAMPLE:               
+ '   COMMENTS:              
+ '   MODIFIED ON:           
+ '   MODIFIED BY:           
+ '   REASON MODIFICATION:   
+ '===============================================================*/  
+  @CountryID bigint null
+  AS  
+  declare @strSql varchar (1500) 
+
+  set @strsql = 'select * from tblNationality where 1=1'
+
+  if (@CountryID is not null )and(@CountryID<>'') 
+  begin 
+ set @strSql = @strSql + 'and Country_ID= '  + convert(nvarchar,@CountryID)  
+
+ end  
+execute (@strsql ) 
+print @strSql
